@@ -1,0 +1,91 @@
+---
+layout: base.njk
+title: Registros | Abranda Pedra
+description: Registros das travessias.
+---
+
+<h1>REGISTROS.</h1>
+
+Abaixo, a galeria completa de nossas expedições. Use os filtros para navegar por categoria.
+
+<div class="filter-menu">
+    <button class="filter-btn active" data-filter="all">Tudo</button>
+    {% assign categories = "" %}
+    {% for foto in registros_fotos %}
+        {% unless categories contains foto.category %}
+            <button class="filter-btn" data-filter="{{ foto.category }}">{{ foto.category }}</button>
+            {% capture categories %}{{ categories }}|{{ foto.category }}{% endcapture %}
+        {% endunless %}
+    {% endfor %}
+</div>
+
+<div class="gallery-grid">
+    {% for foto in registros_fotos %}
+    <div class="gallery-item" data-category="{{ foto.category }}">
+        <img class="gallery-img" src="{{ foto.url }}" alt="{{ foto.name }}" 
+             data-info="<h3>{{ foto.name }}</h3><p>Expedição: {{ foto.category }}</p>">
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Overlay / Lightbox -->
+<div id="overlay" class="overlay">
+    <span class="close-overlay">&times;</span>
+    <img id="overlay-img" class="overlay-content">
+    <div id="overlay-caption" class="overlay-caption"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const overlay = document.getElementById('overlay');
+    const overlayImg = document.getElementById('overlay-img');
+    const overlayCaption = document.getElementById('overlay-caption');
+    const closeOverlay = document.querySelector('.close-overlay');
+
+    // Filtragem
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.getAttribute('data-filter');
+
+            galleryItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Abrir Overlay
+    document.querySelectorAll('.gallery-img').forEach(img => {
+        img.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            overlayImg.src = img.src;
+            overlayCaption.innerHTML = img.getAttribute('data-info');
+            document.body.style.overflow = 'hidden'; // Trava o scroll
+        });
+    });
+
+    // Fechar Overlay
+    const close = () => {
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Destrava o scroll
+    };
+
+    closeOverlay.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) close();
+    });
+    
+    // Fechar com ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+    });
+});
+</script>
+
