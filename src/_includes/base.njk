@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or "Minimalist Site" }}</title>
     <meta name="description" content="{{ description or "Um site minimalista construído com Eleventy." }}">
-    <link rel="stylesheet" href="/css/design-system.css">
+    <link rel="stylesheet" href="{{ '/css/design-system.css' | url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -16,16 +16,16 @@
     <header class="navbar">
       <div class="container">
         <div class="logo">
-          <a href="/">
+          <a href="{{ '/' | url }}">
             <strong>ABRANDA.PEDRA</strong>
           </a>
         </div>
         <nav>
-          <a href="/">Início</a>
-          <a href="/destinos">Destinos</a>
-          <a href="/registros">Registros</a>
-          <a href="/sobre">Sobre</a>
-          <a href="/contato">Contato</a>
+          <a href="{{ '/' | url }}">Início</a>
+          <a href="{{ '/destinos' | url }}">Destinos</a>
+          <a href="{{ '/registros' | url }}">Registros</a>
+          <a href="{{ '/sobre' | url }}">Sobre</a>
+          <a href="{{ '/contato' | url }}">Contato</a>
         </nav>
       </div>
     </header>

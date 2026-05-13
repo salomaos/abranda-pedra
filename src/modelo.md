@@ -53,4 +53,4 @@ A hierarquia visual é baseada em tamanhos grandes e pesos extremos.
 
 Abaixo, uma imagem gerada para exemplificar o uso de fotografia no design P&B.
 
-![Abstract Architecture](/img/placeholder-arch.png)
+<img src="{{ '/img/placeholder-arch.png' | url }}" alt="Abstract Architecture">

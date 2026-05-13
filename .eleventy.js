@@ -5,7 +5,7 @@ module.exports = function(eleventyConfig) {
 
   return {
     // Altere para o nome do seu repositório se não for o domínio principal (ex: /repo-name/)
-    pathPrefix: "/", 
+    pathPrefix: "/abranda-pedra/", 
     dir: {
       input: "src",
       output: "public",

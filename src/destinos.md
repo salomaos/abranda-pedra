@@ -6,8 +6,8 @@ fullWidth: true
 
 <section class="destination-list">
   {% for destino in collections.destinos %}
-  <a href="{{ destino.url }}" class="destination-card">
-    <img src="{{ destino.data.image }}" alt="{{ destino.data.title }}" class="destination-card__img">
+  <a href="{{ destino.url | url }}" class="destination-card">
+    <img src="{{ destino.data.image | url }}" alt="{{ destino.data.title }}" class="destination-card__img">
     <div class="destination-card__overlay">
       <div class="destination-card__content">
         <span class="destination-card__info">{{ destino.data.location }}</span>

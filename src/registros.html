@@ -22,7 +22,7 @@ Abaixo, a galeria completa de nossas expedições. Use os filtros para navegar p
 <div class="gallery-grid">
     {% for foto in registros_fotos %}
     <div class="gallery-item" data-category="{{ foto.category }}">
-        <img class="gallery-img" src="{{ foto.url }}" alt="{{ foto.name }}" 
+        <img class="gallery-img" src="{{ foto.url | url }}" alt="{{ foto.name }}" 
              data-info="<h3>{{ foto.name }}</h3><p>Expedição: {{ foto.category }}</p>">
     </div>
     {% endfor %}
