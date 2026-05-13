@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or "Minimalist Site" }}</title>
-    <meta
-      name="description"
-      content="{{ description or "Um site minimalista construído com Eleventy." }}"
-    >
+    <meta name="description" content="{{ description or "Um site minimalista construído com Eleventy." }}">
     <link rel="stylesheet" href="/css/design-system.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Space+Mono&display=swap"
-      rel="stylesheet"
-    >
+      rel="stylesheet">
   </head>
   <body>
     <header class="navbar">
       <div class="container">
-        <div class="logo"><strong>ABRANDA.PEDRA</strong></div>
+        <div class="logo">
+          <a href="/">
+            <strong>ABRANDA.PEDRA</strong>
+          </a>
+        </div>
         <nav>
           <a href="/">Início</a>
           <a href="/destinos">Destinos</a>
@@ -28,15 +28,18 @@
           <a href="/contato">Contato</a>
         </nav>
       </div>
-    </header> 
-    <div class="container">
-      <main>
+    </header>
+    <main class="main-content">
+      {% if fullWidth %}
         {{ content | safe }}
-      </main>
-
-      <footer>
-        <p>&copy; 2024 ABRANDA PEDRA - DESIGN MINIMALISTA</p>
-      </footer>
-    </div>
+      {% else %}
+        <div class="container mt-5 mb-5">
+          {{ content | safe }}
+        </div>
+      {% endif %}
+    </main>
+    <footer>
+      <p class="container">&copy; 2024 ABRANDA PEDRA - DESIGN MINIMALISTA</p>
+    </footer>
   </body>
 </html>
